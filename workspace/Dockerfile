@@ -298,6 +298,32 @@ RUN if [ ${INSTALL_V8JS_EXTENSION} = true ]; then \
 ;fi
 
 #####################################
+# ZMQ:
+#####################################
+USER root
+
+ARG INSTALL_ZMQ=false
+RUN if [ ${INSTALL_ZMQ} = true ]; then \
+   # Install the zmq extension
+   apt-get -y update \
+   && apt-get -y install uuid-dev \
+   && curl -L -o /tmp/zmq.tar.gz "https://github.com/zeromq/libzmq/releases/download/v4.2.1/zeromq-4.2.1.tar.gz" \
+   && mkdir -p zmq \
+   && tar -C zmq -zxvf /tmp/zmq.tar.gz --strip 1 \
+   && ( \
+       cd zmq \
+       && ./configure \
+       && make \
+       && make install \
+       && ldconfig \
+   ) \
+   && rm -r zmq \
+   && rm /tmp/zmq.tar.gz \
+   && pecl install zmq-beta \
+   && echo "extension=zmq.so" >> /etc/php/7.0/cli/conf.d/20-zmq.ini \
+;fi
+
+#####################################
 # Non-root user : PHPUnit path
 #####################################
 
