@@ -1,1 +1,5 @@
-* * * * * laradock php /var/www/artisan schedule:run >> /dev/null 2>&1
+# * * * * * laradock php /var/www/artisan schedule:run >> /dev/null 2>&1
+
+# Custom cron
+* * * * * root php /var/www/swinecommerceph/artisan pubsub:serve >> /dev/null 2>&1
+* * * * * root php /var/www/swinecommerceph/artisan chat:serve >> /dev/null 2>&1

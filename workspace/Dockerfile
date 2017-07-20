@@ -303,6 +303,8 @@ RUN if [ ${INSTALL_V8JS_EXTENSION} = true ]; then \
 USER root
 
 ARG INSTALL_ZMQ=false
+ENV INSTALL_ZMQ ${INSTALL_ZMQ}
+
 RUN if [ ${INSTALL_ZMQ} = true ]; then \
    # Install the zmq extension
    apt-get -y update \
