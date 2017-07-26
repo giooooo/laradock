@@ -1,0 +1,6 @@
+# Renew SSL certificate/s through "certbot renew" command
+#
+# The following shell command checks or renews SSL certificate/s
+# every 12AM of the 10th and 20th day of the month
+# m    h    dm    m    dw
+  0    0    10,20 *    *    certbot renew --renew-hook /root/certbot/renew-cert-hook.sh >> /dev/null 2>&1

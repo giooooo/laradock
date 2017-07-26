@@ -5,8 +5,13 @@ CMD ["/sbin/my_init"]
 
 # Custom build instructions
 COPY run-certbot.sh /root/certbot/run-certbot.sh
+COPY renew-cert-hook.sh /root/certbot/renew-cert-hook.sh
 
 USER root
+
+# For Renewal of SSL certificate/s cron job
+COPY autorenew /etc/cron.d
+RUN chmod -R 644 /etc/cron.d
 
 RUN apt-get update \
     && apt-get install -y software-properties-common \
