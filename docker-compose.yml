@@ -7,9 +7,7 @@ services:
     applications:
       image: tianon/true
       volumes:
-        - ${APPLICATION}/swinecommerceph/:/var/www/swinecommerceph
-        - ${APPLICATION}/musicteam/:/var/www/musicteam
-        - ${APPLICATION}/breedregistry/:/var/www/breedregistry
+        - ${APPLICATION}/swinecart/:/var/www/swinecart
 
 ### Workspace Utilities Container ###########################
 
